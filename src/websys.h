@@ -51,7 +51,11 @@ typedef unsigned long u_long;
 #include <fcntl.h>
 
 #ifdef WI_USE_MALLOC
-#include <malloc.h>
+# ifdef __APPLE__
+#  include <stdlib.h>
+# else
+#  include <malloc.h>
+# endif
 #endif
 
 #define WI_NOBLOCKSOCK(socket) fcntl(socket, F_SETFL, O_NONBLOCK)
